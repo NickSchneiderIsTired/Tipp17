@@ -48,7 +48,5 @@ public class Keyboard implements KeyListener {
         keys[e.getKeyCode()] = false;
     }
 
-    public void keyTyped(KeyEvent e) {
-
-    }
+    public void keyTyped(KeyEvent e) {}
 }
