@@ -9,13 +9,13 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class TGMain extends JFrame implements Runnable {
 	private static final long serialVersionUID = 1L;
 
-	public final static int width = 1280;
-	public final static int height = 720;
+	private final static int width = 1280;
+	private final static int height = 720;
 
 	private Thread thread;
 	private Graphics g;
@@ -54,7 +54,7 @@ public class TGMain extends JFrame implements Runnable {
 		keys = new Keyboard();
 		mouse = new Mouse();
 		screen = new Screen(width, height);
-		letters = new ArrayList<Letter>();
+		letters = new ArrayList<>();
 		f2 = new Font("Arial", Font.BOLD, 80);
 		score = 0;
 		misses = 0;
@@ -63,13 +63,13 @@ public class TGMain extends JFrame implements Runnable {
 		addMouseListener(mouse);
 	}
 
-	public synchronized void start() {
+	private synchronized void start() {
 		running = true;
 		thread = new Thread(this, "Main");
 		thread.start();
 	}
 
-	public synchronized void stop() {
+	private synchronized void stop() {
 		running = false;
 		try {
 			thread.join();
@@ -78,7 +78,7 @@ public class TGMain extends JFrame implements Runnable {
 		}
 	}
 
-	public void render() {
+	private void render() {
 		BufferStrategy bs = getBufferStrategy();
 		if (bs == null) {
 			createBufferStrategy(3);
@@ -97,7 +97,7 @@ public class TGMain extends JFrame implements Runnable {
 		if (!lost) {
 			level.render(g, f1);
 
-			// Spawnhöhe
+			// Spawnheight
 			g.setColor(Color.gray);
 			g.fillRect(0, 0, width, level.misses * 10 + 35);
 
@@ -143,26 +143,26 @@ public class TGMain extends JFrame implements Runnable {
 
 	}
 
-	public void add(Letter letter) {
+	private void add(Letter letter) {
 		letters.add(letter);
 	}
 
-	public void setDifficulty(String dif) {
-		if (dif == "easy") {
+	private void setDifficulty(String dif) {
+		if (dif.equals("easy")) {
 			level.speed = 100;
 			level.acc = 1;
 		}
-		if (dif == "normal") {
+		if (dif.equals("normal")) {
 			level.speed = 60;
 			level.acc = 2;
 		}
-		if (dif == "hard") {
+		if (dif.equals("hard")) {
 			level.speed = 40;
 			level.acc = 2.5;
 		}
 	}
 
-	public void update() {
+	private void update() {
 
 		checkButton();
 
@@ -190,15 +190,15 @@ public class TGMain extends JFrame implements Runnable {
 
 			// System.out.println(keys.a);
 
-			if (difficulty == "easy") {
+			if (difficulty.equals("easy")) {
 				level.acc += 0.0015;
 			}
 
-			if (difficulty == "normal") {
+			if (difficulty.equals("normal")) {
 				level.acc += 0.002;
 			}
 
-			if (difficulty == "hard") {
+			if (difficulty.equals("hard")) {
 				level.acc += 0.003;
 			}
 
@@ -224,7 +224,7 @@ public class TGMain extends JFrame implements Runnable {
 	private int keytimer = 0;
 	private int keycounter = 0;
 
-	public void removeOnPress() {
+	private void removeOnPress() {
 		if (keytimer != 0) {
 			keycounter++;
 		}
@@ -313,7 +313,7 @@ public class TGMain extends JFrame implements Runnable {
 
 	}
 
-	public void suchen(String l) {
+	private void suchen(String l) {
 		keytimer++;
 		for (int i = 0; i < letters.size(); i++) {
 			if (letters.get(i).getLetter() == l) {
@@ -326,7 +326,7 @@ public class TGMain extends JFrame implements Runnable {
 		level.misses++;
 	}
 
-	public void checkButton() {
+	private void checkButton() {
 		if (mouse.x >= 150 && mouse.x <= 320 && mouse.y >= height / 2 - 30 && mouse.y <= height / 2 + 30 && !playing) {
 			setDifficulty("easy");
 			difficulty = "easy";
@@ -377,7 +377,7 @@ public class TGMain extends JFrame implements Runnable {
 		game.setTitle("Tipp17 - Kappa");
 		game.getFocusableWindowState();
 		game.pack();
-		game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		game.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		game.setLocationRelativeTo(null);
 
 		game.start();

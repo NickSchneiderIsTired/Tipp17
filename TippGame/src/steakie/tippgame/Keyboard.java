@@ -5,9 +5,8 @@ import java.awt.event.KeyListener;
 
 public class Keyboard implements KeyListener {
 
-    public boolean[] keys = new boolean[65536];
-    public boolean a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z, enter, esc, back;
-   // public boolean[] letts;
+    private boolean[] keys = new boolean[65536];
+    boolean a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z, enter, esc, back;
 
     public void update() {
         a = keys[KeyEvent.VK_A];
@@ -39,33 +38,6 @@ public class Keyboard implements KeyListener {
         enter = keys[KeyEvent.VK_ENTER];
         esc = keys[KeyEvent.VK_ESCAPE];
         back = keys[KeyEvent.VK_BACK_SPACE];
-        /*letts = new boolean[26];
-        letts[0] = a;
-        letts[1] = b;
-        letts[2] = c;
-        letts[3] = d;
-        letts[4] = e;
-        letts[5] = f;
-        letts[6] = g;
-        letts[7] = h;
-        letts[8] = i;
-        letts[9] = j;
-        letts[10] = k;
-        letts[11] = l;
-        letts[12] = m;
-        letts[13] = n;
-        letts[14] = o;
-        letts[15] = p;
-        letts[16] = q;
-        letts[17] = r;
-        letts[18] = s;
-        letts[19] = t;
-        letts[20] = u;
-        letts[21] = v;
-        letts[22] = w;
-        letts[23] = x;
-        letts[24] = y;
-        letts[25] = z;*/
     }
 
     public void keyPressed(KeyEvent e) {
