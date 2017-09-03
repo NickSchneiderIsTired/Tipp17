@@ -163,7 +163,6 @@ public class TGMain extends JFrame implements Runnable {
 	}
 
 	private void update() {
-
 		checkButton();
 
 		if (!lost && hasFocus() && playing) {
