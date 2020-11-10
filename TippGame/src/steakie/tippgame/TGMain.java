@@ -158,7 +158,7 @@ public class TGMain extends JFrame implements Runnable {
 		}
 		if (dif.equals("hard")) {
 			level.speed = 40;
-			level.acc = 2.5;
+			level.acc = 2.6;
 		}
 	}
 
